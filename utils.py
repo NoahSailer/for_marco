@@ -68,6 +68,7 @@ def get_cosmo(pars,klin_max=10.):
     
     pert_params = {'output': 'mPk',
                    'P_k_max_h/Mpc': klin_max,
+                   'non_linear': 'halofit',
                    'z_pk': '0,1'}
 
     params = {**pert_params,**params}

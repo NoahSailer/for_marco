@@ -18,9 +18,13 @@ k, p0t_SGC_z3, p2t_SGC_z3 = ptable_SGC_z3(pars)
 # correlation functions
 r, xi0t_z1, xi2t_z1 = xitable_z1(pars)
 r, xi0t_z3, xi2t_z3 = xitable_z3(pars)
+
+# Ckg cross-correlations (NGC)
+ell, Clt_z1 = cltable_z1(pars)
+ell, Clt_z3 = cltable_z3(pars)
 ```
 
-We want to emulate **every entry** in the above tables (e.g. ```p0t_NGC_z1```, ```xi0t_z3```). Ideally the emulator returns a numpy array with the same shape as the tables.
+We want to emulate **every entry** in the above tables (e.g. ```p0t_NGC_z1```, ```xi0t_z3```, ```Clt_z1```). Ideally the emulator returns a numpy array with the same shape as the tables.
 
 -------
 
@@ -36,4 +40,9 @@ Each correlation function table (e.g. ```xi0t_z3```) has shape ```(len(r),N_poly
 1,B1,F,B1**2,F**2,B1*F
 ```
 
-I have removed all trivial polyspectra (e.g. terms proportional to ```bs```).
+Each cross-correlation (cell) table (e.g. ```Clt_z1```) has shape ```(len(ell),N_polyspectra)=(32, 6)```. The 6 polyspectra correspond to the coefficients: 
+```
+1,b1,b2,bs,alpx,smu
+```
+
+I have removed all trivial polyspectra (e.g. terms proportional to ```b3```) that don't need to be emulated.

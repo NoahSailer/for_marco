@@ -96,7 +96,7 @@ def compute_xiell_tables(pars, z=0.61, R=15., rmin=50, rmax=160, dr=0.1, klin_ma
     h = cosmo.h()
 
     ki = np.logspace(-3.0,np.log10(klin_max),200)
-    pi = np.array( [cosmo.pk_cb(k*h, z ) * h**3 for k in ki] )
+    pi = np.array( [cosmo.pk_cb_lin(k*h, z ) * h**3 for k in ki] )
     
     # Caluclate AP parameters
     Hz = cosmo.Hubble(z) * speed_of_light / h # this H(z) in units km/s/(Mpc/h) = 100 * E(z)

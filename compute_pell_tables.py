@@ -10,7 +10,7 @@ def compute_pell_tables(pars, z=0.61, klin_max=10.,cutoff=2.):
     h = cosmo.h()
 
     ki = np.logspace(-3.0,np.log10(klin_max),200)
-    pi = np.array( [cosmo.pk_cb(k*h, z ) * h**3 for k in ki] )
+    pi = np.array( [cosmo.pk_cb_lin(k*h, z ) * h**3 for k in ki] )
         
     # Caluclate AP parameters
     Hz = cosmo.Hubble(z) * speed_of_light / h # this H(z) in units km/s/(Mpc/h) = 100 * E(z)

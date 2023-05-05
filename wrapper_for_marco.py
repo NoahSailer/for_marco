@@ -1,5 +1,6 @@
 from compute_pell_tables import compute_binned_pell_tables
 from compute_xiell_tables import compute_binned_xiell_tables
+from compute_cell_tables import get_binned_Clt_z1, get_binned_Clt_z3
 from utils import convert
 
 # pars = [ln(A_s*1e10), n_s, h, omega_b, omega_cdm, xi_idr, np.log10(a_dark)]
@@ -40,4 +41,14 @@ def xitable_z1(pars,n=4,frac=1.):
 def xitable_z3(pars,n=4,frac=1.):
    pars_ = convert(pars)+[n,frac]
    r, xi0t, xi2t = compute_binned_xiell_tables(pars_, z=0.59, klin_max=12.)
-   return r, xi0t[:,:6], xi2t[:,:6]   
+   return r, xi0t[:,:6], xi2t[:,:6] 
+
+def cltable_z1(pars,n=4,frac=1.):
+   pars_ = convert(pars)+[n,frac]
+   ell, Clt = get_binned_Clt_z1(pars_)
+   return ell, Clt
+
+def cltable_z3(pars,n=4,frac=1.):
+   pars_ = convert(pars)+[n,frac]
+   ell, Clt = get_binned_Clt_z3(pars_)
+   return ell, Clt
